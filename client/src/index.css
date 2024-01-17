@@ -32,3 +32,8 @@ h3 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+
+button,
+input {
+  font-family: "Red Hat Display", sans-serif;
+}
