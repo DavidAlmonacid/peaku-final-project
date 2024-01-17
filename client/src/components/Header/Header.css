@@ -1,0 +1,13 @@
+.logo--short {
+  display: none;
+}
+
+@media (width < 720px) {
+  .logo--big {
+    display: none;
+  }
+
+  .logo--short {
+    display: block;
+  }
+}
