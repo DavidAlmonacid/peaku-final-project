@@ -1,6 +1,6 @@
-import bcrypt from 'bcrypt';
-import { UserModel } from '../models/user.js';
-import { validateUser } from '../schemas/user.js';
+import bcrypt from "bcrypt";
+import { UserModel } from "../models/user.js";
+import { validateUser } from "../schemas/user.js";
 
 const saltRounds = 12;
 
@@ -25,11 +25,11 @@ export class UserController {
     const newUser = await UserModel.create({ input: data });
 
     if (newUser.error) {
-      if (newUser.error.message === 'error creating user') {
+      if (newUser.error.message === "error creating user") {
         return res.status(400).json(newUser.error);
       }
 
-      if (newUser.error.message === 'error getting user') {
+      if (newUser.error.message === "error getting user") {
         return res.status(500).json(newUser.error);
       }
     }
