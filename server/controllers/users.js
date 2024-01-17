@@ -25,13 +25,15 @@ export class UserController {
     const newUser = await UserModel.create({ input: data });
 
     if (newUser.error) {
+      let statusCode = 0;
+
       if (newUser.error.message === "error creating user") {
-        return res.status(400).json(newUser.error);
+        statusCode = 400;
+      } else if (newUser.error.message === "error getting user") {
+        statusCode = 500;
       }
 
-      if (newUser.error.message === "error getting user") {
-        return res.status(500).json(newUser.error);
-      }
+      return res.status(statusCode).json(newUser.error);
     }
 
     return res.status(201).json(newUser.data);
