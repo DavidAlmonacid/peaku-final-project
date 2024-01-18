@@ -26,7 +26,7 @@ export default function SignUp() {
         <input
           type="email"
           name="email"
-          pattern="\w+@\w+\.\w+"
+          pattern="\w+@\w+\.\w{2,3}"
           placeholder="Email address *"
         />
         <input
