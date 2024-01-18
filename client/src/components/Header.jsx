@@ -4,8 +4,8 @@ import logoShort from "../assets/game-store-logo-short.png";
 
 export default function Header() {
   return (
-    <header className="flex justify-between items-center px-8 py-4">
-      <Link to="/" className="[&>picture>img]:max-h-6">
+    <header className="flex justify-between items-center px-6 py-4 shadow-sm">
+      <Link to="/" className="[&>picture>img]:max-h-8">
         <picture className="hidden xs:block">
           <img src={logoBig} alt="game store logo big" />
         </picture>
@@ -16,10 +16,12 @@ export default function Header() {
       </Link>
 
       <div className="flex gap-x-4 *:py-2 *:px-6 *:rounded-xl *:text-sm *:font-medium">
-        <button className="bg-primary-royal-blue">Login</button>
+        <button className="bg-primary-royal-blue text-accent-antiflash-white">
+          Login
+        </button>
         <Link
           to="/signup"
-          className="ring-2 ring-inset ring-primary-ruddy-blue text-primary-ruddy-blue"
+          className="ring-2 ring-inset ring-primary-royal-blue text-primary-royal-blue"
         >
           Sign Up
         </Link>
