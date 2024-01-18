@@ -1,0 +1,29 @@
+import { Link } from "react-router-dom";
+import logoBig from "../assets/game-store-logo-big.png";
+import logoShort from "../assets/game-store-logo-short.png";
+
+export default function Header() {
+  return (
+    <header className="flex justify-between items-center px-8 py-4">
+      <Link to="/" className="[&>picture>img]:max-h-6">
+        <picture className="hidden sm:block">
+          <img src={logoBig} alt="game store logo big" />
+        </picture>
+
+        <picture className="sm:hidden">
+          <img src={logoShort} alt="game store logo short" />
+        </picture>
+      </Link>
+
+      <div className="flex gap-x-4 *:py-2 *:px-6 *:rounded-xl *:text-sm *:font-medium">
+        <button className="bg-blue-600">Log In</button>
+        <Link
+          to="/signup"
+          className="outline outline-2 -outline-offset-2 text-blue-400"
+        >
+          Create Account
+        </Link>
+      </div>
+    </header>
+  );
+}
