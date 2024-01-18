@@ -19,7 +19,7 @@ export default function Header() {
         <button className="bg-primary-royal-blue">Log In</button>
         <Link
           to="/signup"
-          className="outline outline-2 -outline-offset-2 text-primary-ruddy-blue"
+          className="ring-2 ring-inset ring-primary-ruddy-blue text-primary-ruddy-blue"
         >
           Create Account
         </Link>
