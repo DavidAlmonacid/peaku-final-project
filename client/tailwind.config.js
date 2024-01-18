@@ -9,13 +9,17 @@ export default {
     extend: {
       colors: {
         primary: {
-          "ruddy-blue": "#60a5fa",
-          "royal-blue": "#2563eb"
+          "ruddy-blue": "#60a5fa", // blue-400
+          "royal-blue": "#2563eb" // blue-600
         },
         accent: {
-          "antiflash-white": "#e5e7eb",
-          night: "#0a0a0a"
+          "antiflash-white": "#e5e7eb", // gray-200
+          "eerie-black": "#18181b", // zinc-900
+          night: "#0a0a0a" // neutral-950
         }
+      },
+      screens: {
+        xs: "475px"
       }
     }
   },
