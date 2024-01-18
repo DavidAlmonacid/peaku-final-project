@@ -5,3 +5,7 @@
 body {
   @apply min-w-80 min-h-screen bg-neutral-950 text-gray-200 antialiased;
 }
+
+button {
+  @apply cursor-default;
+}
