@@ -1,9 +1,11 @@
 import express from "express";
+import { corsMiddleware } from "./middlewares/cors.js";
 import { usersRouter } from "./routes/users.js";
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.json());
+app.use(corsMiddleware());
 
 app.use("/api/users", usersRouter);
 
