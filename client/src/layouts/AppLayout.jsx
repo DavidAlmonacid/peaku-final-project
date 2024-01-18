@@ -3,10 +3,10 @@ import Header from "../components/Header.jsx";
 
 export default function AppLayout() {
   return (
-    <div>
+    <div className="flex flex-col h-screen">
       <Header />
 
-      <main>
+      <main className="flex-auto">
         <Outlet />
       </main>
     </div>
