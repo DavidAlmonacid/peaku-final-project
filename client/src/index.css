@@ -13,3 +13,9 @@ body {
 button {
   @apply cursor-default;
 }
+
+h1,
+h2,
+h3 {
+  @apply font-title;
+}
