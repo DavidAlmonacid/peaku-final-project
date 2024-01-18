@@ -2,12 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: dark;
-}
-
 body {
-  @apply min-w-80 min-h-screen bg-accent-night text-accent-antiflash-white antialiased;
+  @apply min-w-80 min-h-screen bg-accent-antiflash-white text-accent-night antialiased;
 }
 
 button {
