@@ -1,5 +1,3 @@
-import signupImage from "../assets/signup-image.webp";
-
 export default function SignUp() {
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -62,12 +60,6 @@ export default function SignUp() {
           <button>Login</button>
         </p>
       </section>
-
-      <div className="absolute right-0 bottom-0 -z-10">
-        <picture className="block max-w-64 p-3 md:p-4 lg:p-5 box-content">
-          <img src={signupImage} alt="fantasy character" />
-        </picture>
-      </div>
     </div>
   );
 }
