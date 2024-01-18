@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply min-w-80 min-h-screen bg-neutral-950 text-gray-200 antialiased;
+  @apply min-w-80 min-h-screen bg-accent-night text-accent-antiflash-white antialiased;
 }
 
 button {

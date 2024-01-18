@@ -9,7 +9,7 @@ export default function SignUp() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="form-group">
+      <div className="">
         <input type="text" name="name" placeholder="Name *" />
         <input type="text" name="last_name" placeholder="Last name *" />
         <input

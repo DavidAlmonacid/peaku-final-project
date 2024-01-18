@@ -16,10 +16,10 @@ export default function Header() {
       </Link>
 
       <div className="flex gap-x-4 *:py-2 *:px-6 *:rounded-xl *:text-sm *:font-medium">
-        <button className="bg-blue-600">Log In</button>
+        <button className="bg-primary-royal-blue">Log In</button>
         <Link
           to="/signup"
-          className="outline outline-2 -outline-offset-2 text-blue-400"
+          className="outline outline-2 -outline-offset-2 text-primary-ruddy-blue"
         >
           Create Account
         </Link>
