@@ -6,7 +6,18 @@ export default {
       sans: ["Red Hat Display", "sans-serif"],
       title: ["Readex Pro", "sans-serif"]
     },
-    extend: {}
+    extend: {
+      colors: {
+        primary: {
+          "ruddy-blue": "#60a5fa",
+          "royal-blue": "#2563eb"
+        },
+        accent: {
+          "antiflash-white": "#e5e7eb",
+          night: "#0a0a0a"
+        }
+      }
+    }
   },
   plugins: []
 };
