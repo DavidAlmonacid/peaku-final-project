@@ -3,27 +3,28 @@ export default function SignUp() {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    console.log(formData);
     const data = Object.fromEntries(formData);
-    console.log(data);
+    console.log(JSON.stringify(data));
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" name="username" />
-      </label>
+      <div className="form-group">
+        <input type="text" name="name" placeholder="Name *" />
+        <input type="text" name="last_name" placeholder="Last name *" />
+        <input
+          type="email"
+          name="email"
+          pattern="\w+@\w+\.\w+"
+          placeholder="Email address *"
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter your password *"
+        />
+      </div>
 
-      <label>
-        Password:
-        <input type="password" name="password" />
-      </label>
-
-      <label>
-        Email:
-        <input type="email" name="email" />
-      </label>
       <input type="submit" value="Sign Up" />
     </form>
   );
