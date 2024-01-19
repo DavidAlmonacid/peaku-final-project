@@ -30,7 +30,7 @@ export class UserModel {
 
     return {
       success: true,
-      message: "User created",
+      message: "User created successfully",
       data: {
         id: userCreated.id,
         name: userCreated.name,
