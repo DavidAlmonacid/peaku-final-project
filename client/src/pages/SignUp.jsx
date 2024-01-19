@@ -70,14 +70,15 @@ export default function SignUp() {
               type="text"
               name="name"
               placeholder="Name *"
-              className="capitalize text-accent-night h-9 px-3 rounded-xl focus:outline-primary-royal-blue w-full"
+              className="capitalize text-accent-night h-9 px-3 rounded-xl focus:outline-primary-royal-blue w-full placeholder:text-accent-slate-gray"
+              autoFocus
               required
             />
             <input
               type="text"
               name="last_name"
               placeholder="Last name *"
-              className="capitalize text-accent-night h-9 px-3 rounded-xl focus:outline-primary-royal-blue w-full"
+              className="capitalize text-accent-night h-9 px-3 rounded-xl focus:outline-primary-royal-blue w-full placeholder:text-accent-slate-gray"
               required
             />
             <div>
@@ -86,7 +87,7 @@ export default function SignUp() {
                 name="email"
                 pattern="\w+@\w+\.\w{2,3}"
                 placeholder="Email address *"
-                className={`text-accent-night h-9 px-3 rounded-xl focus:outline-primary-royal-blue w-full ${error.status && error.type === "email" && "ring-2 ring-red-500 focus:outline-red-500"}`}
+                className={`text-accent-night h-9 px-3 rounded-xl focus:outline-primary-royal-blue w-full placeholder:text-accent-slate-gray ${error.status && error.type === "email" && "ring-2 ring-red-500 focus:outline-red-500"}`}
                 required
               />
               {error.status && error.type === "email" && (
@@ -100,7 +101,7 @@ export default function SignUp() {
                 type="password"
                 name="password"
                 placeholder="Enter your password *"
-                className={`text-accent-night h-9 px-3 rounded-xl focus:outline-primary-royal-blue w-full ${error.status && error.type === "password" && "ring-2 ring-red-500 focus:outline-red-500"}`}
+                className={`text-accent-night h-9 px-3 rounded-xl focus:outline-primary-royal-blue w-full placeholder:text-accent-slate-gray ${error.status && error.type === "password" && "ring-2 ring-red-500 focus:outline-red-500"}`}
                 required
               />
               {error.status && error.type === "password" && (
