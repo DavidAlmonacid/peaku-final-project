@@ -15,6 +15,7 @@ export default {
         accent: {
           "antiflash-white": "#e5e7eb", // gray-200
           timberwolf: "#d4d4d8", // zinc-300
+          "slate-gray": "#6b7280", // gray-500
           night: "#0a0a0a" // neutral-950
         }
       },
