@@ -1,9 +1,27 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Toaster, toast } from "sonner";
+
+async function createUser({ data }) {
+  const response = await fetch("http://localhost:3001/api/users", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  if (!response.ok) {
+    const { message } = await response.json();
+    throw new Error(message);
+  }
+
+  return await response.json();
+}
 
 export default function SignUp() {
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const [error, setError] = useState({
+    status: false,
+    message: "",
+    type: ""
+  });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -11,21 +29,34 @@ export default function SignUp() {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    const response = await fetch("http://localhost:3001/api/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+    toast.promise(createUser({ data }), {
+      loading: "Creating account...",
+
+      success: (data) => {
+        setError({
+          status: false,
+          message: "",
+          type: ""
+        });
+        event.target.reset();
+
+        return data.message;
+      },
+
+      error: (error) => {
+        setError({
+          status: true,
+          message: error.message,
+          type: error.message.toLowerCase().includes("password")
+            ? "password"
+            : "email"
+        });
+
+        return error.message;
+      },
+
+      classNames: { title: "text-base" }
     });
-
-    const json = await response.json();
-    console.log(json);
-
-    if (json.error) {
-      setError(json.message);
-      return;
-    }
-
-    navigate("/login");
   };
 
   return (
@@ -39,14 +70,14 @@ export default function SignUp() {
               type="text"
               name="name"
               placeholder="Name *"
-              className="capitalize text-accent-night h-9 px-4 rounded-xl focus:outline-primary-royal-blue w-full"
+              className="capitalize text-accent-night h-9 px-3 rounded-xl focus:outline-primary-royal-blue w-full"
               required
             />
             <input
               type="text"
               name="last_name"
               placeholder="Last name *"
-              className="capitalize text-accent-night h-9 px-4 rounded-xl focus:outline-primary-royal-blue w-full"
+              className="capitalize text-accent-night h-9 px-3 rounded-xl focus:outline-primary-royal-blue w-full"
               required
             />
             <div>
@@ -55,15 +86,12 @@ export default function SignUp() {
                 name="email"
                 pattern="\w+@\w+\.\w{2,3}"
                 placeholder="Email address *"
-                className="text-accent-night h-9 px-4 rounded-xl focus:outline-primary-royal-blue w-full"
+                className={`text-accent-night h-9 px-3 rounded-xl focus:outline-primary-royal-blue w-full ${error.status && error.type === "email" && "ring-2 ring-red-500 focus:outline-red-500"}`}
                 required
               />
-              {error && error.includes("email") && (
-                <p className="mt-1 text-sm text-red-500">{error}</p>
-              )}
-              {error && error === "Error creating user" && (
+              {error.status && error.type === "email" && (
                 <p className="mt-1 text-sm text-red-500">
-                  {error + ", try with another email"}
+                  {error.message + ", try with another email"}
                 </p>
               )}
             </div>
@@ -72,30 +100,25 @@ export default function SignUp() {
                 type="password"
                 name="password"
                 placeholder="Enter your password *"
-                className="text-accent-night h-9 px-4 rounded-xl focus:outline-primary-royal-blue w-full"
+                className={`text-accent-night h-9 px-3 rounded-xl focus:outline-primary-royal-blue w-full ${error.status && error.type === "password" && "ring-2 ring-red-500 focus:outline-red-500"}`}
                 required
               />
-              {error && error.includes("Password") && (
-                <p className="mt-1 text-sm text-red-500">{error}</p>
+              {error.status && error.type === "password" && (
+                <p className="mt-1 text-sm text-red-500">{error.message}</p>
               )}
             </div>
           </div>
 
           <button
             type="submit"
-            className="mt-11 bg-primary-royal-blue text-accent-antiflash-white text-lg font-medium h-10 w-full rounded-xl"
+            className="mt-11 bg-primary-royal-blue text-accent-antiflash-white text-lg font-medium h-10 w-full rounded-xl disabled:opacity-60"
           >
             Create Account
           </button>
         </form>
-
-        <p className="flex gap-x-2 text-sm font-medium">
-          <span>Already have an account?</span>
-          <Link to="/login" className="text-primary-royal-blue">
-            Login
-          </Link>
-        </p>
       </section>
+
+      <Toaster visibleToasts={1} duration={7000} theme="dark" richColors />
     </div>
   );
 }
