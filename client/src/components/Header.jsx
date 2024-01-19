@@ -16,9 +16,13 @@ export default function Header() {
       </Link>
 
       <div className="flex gap-x-4 *:py-2 *:px-6 *:rounded-xl *:text-sm *:font-medium">
-        <button className="bg-primary-royal-blue text-accent-antiflash-white">
+        <Link
+          to="/login"
+          className="bg-primary-royal-blue text-accent-antiflash-white"
+        >
           Login
-        </button>
+        </Link>
+
         <Link
           to="/signup"
           className="ring-2 ring-inset ring-primary-royal-blue text-primary-royal-blue"
