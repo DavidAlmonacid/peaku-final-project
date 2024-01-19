@@ -1,7 +1,7 @@
 import { pool } from "../utils/dbConnection.js";
 
 export class UserModel {
-  static create = async ({ input }) => {
+  static async create({ input }) {
     const { name, last_name: lastName, email, password } = input;
 
     const uuidResult = await pool.query("SELECT uuid_generate_v4() AS uuid;");
@@ -13,12 +13,7 @@ export class UserModel {
         [uuid, name, lastName, email, password]
       );
     } catch (error) {
-      return {
-        error: {
-          message: "error creating user",
-          detail: error.message
-        }
-      };
+      return { error: true, message: "Error creating user" };
     }
 
     let userCreated = null;
@@ -30,14 +25,20 @@ export class UserModel {
 
       userCreated = userResult.rows[0];
     } catch (error) {
-      return {
-        error: {
-          message: "error getting user",
-          detail: error.message
-        }
-      };
+      return { error: true, message: "Error getting user" };
     }
 
-    return { data: userCreated };
-  };
+    return {
+      success: true,
+      message: "User created",
+      data: {
+        id: userCreated.id,
+        name: userCreated.name,
+        last_name: userCreated.last_name,
+        email: userCreated.email,
+        created_at: userCreated.created_at,
+        updated_at: userCreated.updated_at
+      }
+    };
+  }
 }
