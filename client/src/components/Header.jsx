@@ -2,14 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import logoBig from "../assets/game-store-logo-big.png";
 import logoShort from "../assets/game-store-logo-short.png";
-import Login from "./Login";
+import { useUser } from "../hooks/useUser";
+import { Login } from "./Login";
 
-export default function Header() {
+export function Header() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const handleClick = () => {
-    setIsOpen((prevState) => !prevState);
-  };
+  const { isLoggedIn } = useUser();
 
   return (
     <header className="flex justify-between items-center px-6 py-4 shadow-sm">
@@ -25,7 +23,7 @@ export default function Header() {
 
       <div className="flex gap-x-4 *:py-2 *:px-6 *:rounded-xl *:text-sm *:font-medium">
         <button
-          onClick={handleClick}
+          onClick={() => setIsOpen((prevState) => !prevState)}
           className="bg-primary-royal-blue text-accent-antiflash-white"
         >
           Login
@@ -39,7 +37,7 @@ export default function Header() {
         </Link>
       </div>
 
-      {isOpen && <Login />}
+      {isOpen && !isLoggedIn && <Login />}
     </header>
   );
 }
