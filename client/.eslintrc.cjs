@@ -17,6 +17,8 @@ module.exports = {
       "warn",
       { allowConstantExport: true }
     ],
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "react/prop-types": "off",
+    "react-hooks/exhaustive-deps": "off"
   }
 };
