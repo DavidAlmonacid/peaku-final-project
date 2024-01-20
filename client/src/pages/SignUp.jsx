@@ -16,7 +16,7 @@ async function createUser({ data }) {
   return await response.json();
 }
 
-export default function SignUp() {
+export function SignUp() {
   const [error, setError] = useState({
     status: false,
     message: "",
