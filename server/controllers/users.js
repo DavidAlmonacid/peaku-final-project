@@ -68,6 +68,8 @@ export class UserController {
       return res.status(401).json({ error: true, message: "Wrong password" });
     }
 
-    return res.status(200).json({ success: true, message: "Logged in" });
+    delete dbData.data.password;
+
+    return res.status(200).json(dbData);
   }
 }
