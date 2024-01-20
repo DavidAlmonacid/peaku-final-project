@@ -40,7 +40,34 @@ export class UserController {
     return res.status(201).json(newUser);
   }
 
-  // static async login(req, res) {
-  //   const validationResult = validateUser(req.body);
-  // }
+  static async login(req, res) {
+    const { email, password } = req.query;
+
+    const dbData = await UserModel.getByEmail({ email });
+
+    if (dbData.error) {
+      let statusCode = 0;
+
+      if (dbData.message === "User not found") {
+        statusCode = 404;
+      } else if (dbData.message === "Error getting user") {
+        statusCode = 500;
+      }
+
+      return res.status(statusCode).json(dbData);
+    }
+
+    let isPasswordCorrect = false;
+    try {
+      isPasswordCorrect = await bcrypt.compare(password, dbData.data.password);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+
+    if (!isPasswordCorrect) {
+      return res.status(401).json({ error: true, message: "Wrong password" });
+    }
+
+    return res.status(200).json({ success: true, message: "Logged in" });
+  }
 }
