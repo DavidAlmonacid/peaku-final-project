@@ -11,3 +11,4 @@ Content-Type: application/json
 }
 
 ###
+GET http://localhost:3001/api/users?email=david@email.com&password=12345678
