@@ -45,7 +45,7 @@ export class UserModel {
   static async getByEmail({ email }) {
     try {
       const userResult = await pool.query(
-        "SELECT email, password FROM users WHERE email = $1;",
+        "SELECT id, name, last_name, email, password, created_at, updated_at FROM users WHERE email = $1;",
         [email]
       );
       const user = userResult.rows[0];
