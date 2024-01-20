@@ -1,14 +1,17 @@
 import { Route, Routes } from "react-router-dom";
-import AppLayout from "./layouts/AppLayout";
-import SignUp from "./pages/SignUp";
+import { UserProvider } from "./contexts/UserContext";
+import { AppLayout } from "./layouts/AppLayout";
+import { SignUp } from "./pages/SignUp";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<AppLayout />}>
-        <Route path="signup" element={<SignUp />} />
-      </Route>
-    </Routes>
+    <UserProvider>
+      <Routes>
+        <Route path="/" element={<AppLayout />}>
+          <Route path="signup" element={<SignUp />} />
+        </Route>
+      </Routes>
+    </UserProvider>
   );
 }
 
