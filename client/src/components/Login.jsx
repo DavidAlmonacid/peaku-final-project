@@ -6,24 +6,19 @@ async function fetchUser({ data }) {
   const { email, password } = data;
 
   const response = await fetch(
-    `http://localhost:3001/api/users?email=${email}&password=${password}`
+    `http://localhost:3001/api/user?email=${email}&password=${password}`
   );
 
+  const json = await response.json();
+
   if (!response.ok) {
-    const { message } = await response.json();
-    throw new Error(message);
+    throw new Error(json.message);
   }
 
-  return await response.json();
+  return json;
 }
 
-/*
-TODO:
-- Change the Header component to show the user's name and a logout button
-*/
-
 export function Login() {
-  const { setIsLoggedIn } = useUser();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({
     status: false,
@@ -31,13 +26,14 @@ export function Login() {
     type: ""
   });
 
+  const { user, setUser } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (isLoading) {
       setTimeout(() => {
         setIsLoading(false);
-        setIsLoggedIn(true);
+        setUser({ ...user, isLoggedIn: true });
         navigate("/");
       }, 2000);
     }
@@ -50,7 +46,7 @@ export function Login() {
     const data = Object.fromEntries(formData);
 
     try {
-      await fetchUser({ data });
+      const userResponse = await fetchUser({ data });
 
       setIsLoading(true);
       setError({
@@ -58,6 +54,7 @@ export function Login() {
         message: "",
         type: ""
       });
+      setUser(userResponse.data);
     } catch (error) {
       setError({
         status: true,
