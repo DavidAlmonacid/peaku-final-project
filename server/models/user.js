@@ -41,4 +41,26 @@ export class UserModel {
       }
     };
   }
+
+  static async getByEmail({ email }) {
+    try {
+      const userResult = await pool.query(
+        "SELECT email, password FROM users WHERE email = $1;",
+        [email]
+      );
+      const user = userResult.rows[0];
+
+      if (!user) {
+        return { error: true, message: "User not found" };
+      }
+
+      return {
+        success: true,
+        message: "User found",
+        data: user
+      };
+    } catch (error) {
+      return { error: true, message: "Error getting user" };
+    }
+  }
 }
