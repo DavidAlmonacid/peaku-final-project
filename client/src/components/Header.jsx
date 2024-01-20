@@ -7,7 +7,12 @@ import { Login } from "./Login";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const { isLoggedIn } = useUser();
+  const { user } = useUser();
+
+  /*
+    TODO:
+    - Change the Header component to show the user's name and a logout button
+  */
 
   return (
     <header className="flex justify-between items-center px-6 py-4 shadow-sm">
@@ -21,23 +26,33 @@ export function Header() {
         </picture>
       </Link>
 
-      <div className="flex gap-x-4 *:py-2 *:px-6 *:rounded-xl *:text-sm *:font-medium">
-        <button
-          onClick={() => setIsOpen((prevState) => !prevState)}
-          className="bg-primary-royal-blue text-accent-antiflash-white"
-        >
-          Login
-        </button>
+      {!user?.isLoggedIn ? (
+        <>
+          <section className="flex gap-x-4 *:py-2 *:px-6 *:rounded-xl *:text-sm *:font-medium">
+            <button
+              onClick={() => setIsOpen((prevState) => !prevState)}
+              className="bg-primary-royal-blue text-accent-antiflash-white"
+            >
+              Login
+            </button>
 
-        <Link
-          to="/signup"
-          className="ring-2 ring-inset ring-primary-royal-blue text-primary-royal-blue bg-primary-ruddy-blue/10"
-        >
-          Sign Up
-        </Link>
-      </div>
+            <Link
+              to="/signup"
+              className="ring-2 ring-inset ring-primary-royal-blue text-primary-royal-blue bg-primary-ruddy-blue/10"
+            >
+              Sign Up
+            </Link>
+          </section>
 
-      {isOpen && !isLoggedIn && <Login />}
+          {isOpen && <Login />}
+        </>
+      ) : (
+        <section>
+          <p>{user.email}</p>
+          <p>shopping cart icon</p>
+          <p>avatar button with dropdown</p>
+        </section>
+      )}
     </header>
   );
 }
