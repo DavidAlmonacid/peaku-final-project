@@ -1,2 +1,10 @@
-Tasks:
-    * Insert products to the database
+Functional Requirements:
+
+    Product Catalog:
+        ✔ Insert products into the database
+        * Display a list of available products
+
+    Shopping Cart:
+        * Users should be able to add products to a shopping cart
+        * Users should be able to remove products from a shopping cart
+        * Display the shopping cart list with the total price
