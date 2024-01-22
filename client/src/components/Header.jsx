@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
+import { CartIcon } from "./Icons";
+import { Login } from "./Login";
+import { SettingsUser } from "./SettingsUser";
+
+import { useUser } from "../hooks/useUser";
+
 import logoBig from "../assets/game-store-logo-big.png";
 import logoShort from "../assets/game-store-logo-short.png";
-import { useUser } from "../hooks/useUser";
-import { Login } from "./Login";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUser();
-
-  /*
-    TODO:
-    - Change the Header component to show the user's name and a logout button
-  */
 
   return (
     <header className="flex justify-between items-center px-6 py-4 shadow-sm">
@@ -47,10 +47,10 @@ export function Header() {
           {isOpen && <Login />}
         </>
       ) : (
-        <section>
-          <p>{user.email}</p>
-          <p>shopping cart icon</p>
-          <p>avatar button with dropdown</p>
+        <section className="flex items-center gap-x-3">
+          <span className="font-medium">{user.email}</span>
+          <CartIcon />
+          <SettingsUser />
         </section>
       )}
     </header>
