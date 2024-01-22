@@ -13,11 +13,12 @@ CREATE TABLE users (
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    image_url VARCHAR(200) NOT NULL,
-    category VARCHAR(40) NOT NULL,
     price DECIMAL NOT NULL,
+    category VARCHAR(40) NOT NULL,
+    description TEXT NOT NULL,
+    image_url VARCHAR(200) NOT NULL,
     stock_units INTEGER NOT NULL,
-    discount DECIMAL(1, 2) NOT NULL DEFAULT 0.00,
+    discount DECIMAL(5, 2) NOT NULL DEFAULT 0.00,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
