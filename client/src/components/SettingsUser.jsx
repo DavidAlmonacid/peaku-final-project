@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useUser } from "../hooks/useUser";
 import { UserIcon } from "./Icons";
 
 export function SettingsUser() {
   const [isOpen, setIsOpen] = useState(false);
+  const { setUser } = useUser();
 
   return (
     <>
@@ -17,7 +19,7 @@ export function SettingsUser() {
           </button>
 
           <button
-            onClick={() => (window.location.href = "/")}
+            onClick={() => setUser(null)}
             className="w-full px-4 py-2 text-left hover:bg-primary-ruddy-blue/10"
           >
             Logout
