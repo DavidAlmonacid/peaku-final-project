@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../hooks/useUser.js";
+import { LoaderIcon } from "./Icons.jsx";
 
 async function fetchUser({ data }) {
   const { email, password } = data;
@@ -65,7 +66,7 @@ export function Login() {
   };
 
   return (
-    <div className="absolute right-32 top-20 bg-neutral-300 px-4 pt-6 pb-8 w-full max-w-xs rounded-2xl shadow-lg">
+    <section className="absolute top-20 right-1/2 translate-x-1/2 xs:right-8 xs:translate-x-0 sm:right-32 bg-accent-antiflash-white px-4 pt-6 pb-8 w-full max-w-xs rounded-2xl shadow-lg">
       <h3 className="text-3xl font-semibold mb-6">Login</h3>
 
       <form className="w-full" onSubmit={handleSubmit}>
@@ -106,25 +107,9 @@ export function Login() {
           className="flex items-center justify-center gap-3 mt-7 bg-primary-royal-blue text-accent-antiflash-white text-base font-medium h-9 w-full rounded-xl disabled:opacity-60"
         >
           Login
-          {isLoading && (
-            <svg className="animate-spin size-4" viewBox="0 0 24 24">
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              />
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-              />
-            </svg>
-          )}
+          {isLoading && <LoaderIcon />}
         </button>
       </form>
-    </div>
+    </section>
   );
 }
