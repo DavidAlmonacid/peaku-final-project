@@ -60,7 +60,10 @@ export function Login() {
       setError({
         status: true,
         message: error.message,
-        type: error.message === "User not found" ? "email" : "password"
+        type:
+          error.message === "User not found" || "Error getting user"
+            ? "email"
+            : "password"
       });
     }
   };
