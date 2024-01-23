@@ -14,33 +14,48 @@ async function fetchProducts() {
 }
 
 export function Home() {
+  const [games, setGames] = useState([]);
   const [promoGame, setPromoGame] = useState({});
 
   useEffect(() => {
-    fetchProducts()
-      .then((json) => {
-        setPromoGame(
-          json.data
-            .filter(
-              (product) => product.category === "Games" && product.discount > 0
-            )
-            .sort((a, b) => b.discount - a.discount)[0]
-        );
-      })
-      .catch((error) => console.error(error.message));
-  }, []);
+    async function getProducts() {
+      try {
+        const { data: products } = await fetchProducts();
 
-  console.log(promoGame);
+        const filteredGames = products
+          .filter((product) => product.category === "Games")
+          .sort((a, b) => b.discount - a.discount);
+
+        setPromoGame(filteredGames[0]);
+        setGames(filteredGames.slice(1));
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+
+    getProducts();
+  }, []);
 
   return (
     <>
       <Hero promoGame={promoGame} />
 
-      {/* <ul>
-        {products.map((product) => (
-          <li key={product.id}>{product.name}</li>
+      {/* Games section start */}
+      <ul>
+        {games.map((game) => (
+          <li key={game.id}>
+            <div>
+              <figure>
+                <img src={game.image_url} alt={game.name} />
+                <figcaption>{game.name}</figcaption>
+              </figure>
+
+              <button>View details</button>
+            </div>
+          </li>
         ))}
-      </ul> */}
+      </ul>
+      {/* Games section end */}
     </>
   );
 }
