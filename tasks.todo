@@ -2,6 +2,8 @@ Functional Requirements:
 
     Product Catalog:
         ✔ Insert products into the database
+        ✔ Style Hero buttons
+        ✔ Responsive Hero
         * Display a list of available products
 
     Shopping Cart:
