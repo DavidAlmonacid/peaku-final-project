@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Toaster, toast } from "sonner";
+import { BASE_URL } from "../config.js";
 
 async function createUser({ data }) {
-  const response = await fetch("http://localhost:3001/api/user", {
+  const response = await fetch(`${BASE_URL}/api/user`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
@@ -61,7 +62,7 @@ export function SignUp() {
 
   return (
     <div className="flex justify-center items-center h-full">
-      <section className="flex flex-col items-center gap-y-14 px-6 py-12 bg-accent-timberwolf w-full max-w-lg mx-3 rounded-3xl">
+      <section className="flex flex-col items-center gap-y-14 px-6 py-12 bg-accent-timberwolf w-full max-w-lg mx-3 rounded-2xl">
         <h1 className="text-4xl font-semibold">Create an account</h1>
 
         <form className="w-full" onSubmit={handleSubmit}>

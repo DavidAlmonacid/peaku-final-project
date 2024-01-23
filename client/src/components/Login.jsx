@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../config.js";
 import { useUser } from "../hooks/useUser.js";
 import { LoaderIcon } from "./Icons.jsx";
 
@@ -7,7 +8,7 @@ async function fetchUser({ data }) {
   const { email, password } = data;
 
   const response = await fetch(
-    `http://localhost:3001/api/user?email=${email}&password=${password}`
+    `${BASE_URL}/api/user?email=${email}&password=${password}`
   );
 
   const json = await response.json();
@@ -61,7 +62,7 @@ export function Login() {
         status: true,
         message: error.message,
         type:
-          error.message === "User not found" || "Error getting user"
+          error.message === ("User not found" || "Error getting user")
             ? "email"
             : "password"
       });
