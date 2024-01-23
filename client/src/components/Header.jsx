@@ -15,7 +15,7 @@ export function Header() {
   const { user } = useUser();
 
   return (
-    <header className="flex justify-between items-center px-6 py-4 shadow-sm">
+    <header className="flex justify-between items-center px-6 py-4 shadow-sm z-10">
       <Link to="/" className="[&>picture>img]:max-h-8">
         <picture className="hidden xs:block">
           <img src={logoBig} alt="game store logo big" />
