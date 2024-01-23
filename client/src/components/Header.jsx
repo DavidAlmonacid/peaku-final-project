@@ -38,7 +38,7 @@ export function Header() {
 
             <Link
               to="/signup"
-              className="ring-2 ring-inset ring-primary-royal-blue text-primary-royal-blue bg-primary-ruddy-blue/10"
+              className="ring-1 ring-inset ring-primary-royal-blue text-primary-royal-blue bg-accent-antiflash-white"
             >
               Sign Up
             </Link>
