@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Hero } from "../components/Hero.jsx";
+import { TrendingGames } from "../components/TrendingGames.jsx";
 import { BASE_URL } from "../config.js";
 
 async function fetchProducts() {
@@ -39,23 +40,7 @@ export function Home() {
   return (
     <>
       <Hero promoGame={promoGame} />
-
-      {/* Games section start */}
-      <ul>
-        {games.map((game) => (
-          <li key={game.id}>
-            <div>
-              <figure>
-                <img src={game.image_url} alt={game.name} />
-                <figcaption>{game.name}</figcaption>
-              </figure>
-
-              <button>View details</button>
-            </div>
-          </li>
-        ))}
-      </ul>
-      {/* Games section end */}
+      <TrendingGames games={games} />
     </>
   );
 }
