@@ -7,7 +7,9 @@ export function Hero({ promoGame }) {
     <div className="px-5 py-12">
       <div className="flex flex-col sm:flex-row items-end mx-auto max-w-3xl sm:max-h-[272px] bg-accent-timberwolf rounded-2xl">
         <section className="flex-auto flex flex-col gap-y-7 px-6 pt-11 pb-5 sm:w-1/2 sm:px-4 sm:py-5">
-          <h2 className="text-4xl font-bold sm:text-2xl">{splitName}</h2>
+          <h2 className="text-4xl font-bold sm:text-2xl md:text-3xl">
+            {splitName}
+          </h2>
           <p className="line-clamp-5 xs:line-clamp-4 sm:line-clamp-3 text-pretty">
             {promoGame?.description}
           </p>
